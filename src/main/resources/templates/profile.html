@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+</head>
+<body>
+<h1>Your profile</h1>
+<p><strong>Name:</strong> <span th:text="${name}"></span></p>
+<p><strong>Login:</strong> <span th:text="${login}"></span></p>
+<p><strong>ID:</strong> <span th:text="${id}"></span></p>
+<p><strong>Email:</strong> <span th:text="${email}"></span></p>
+<p><strong>Roles:</strong></p>
+<ul>
+  <li th:each="role : ${roles}" th:text="${role}"></li>
+</ul>
+<br>
+<form th:action="@{/logout}" method="post">
+  <button type="submit">Logout</button>
+</form>
+</body>
+</html>

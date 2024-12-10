@@ -1,0 +1,23 @@
+version: '3'
+services:
+  postgres_oauth2:
+    container_name: postgres_oauth2
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: oauth2
+    ports:
+      - "5432:5432"
+  oauth2:
+    build: ./
+    container_name: oauth2
+    image: oauth2
+    depends_on:
+      - postgres_oauth2
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_oauth2:5432/oauth2
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: user
+    ports:
+      - "8080:8080"
